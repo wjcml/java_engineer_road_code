@@ -1,10 +1,14 @@
 package com.proxy.staticproxy;
 
+import com.proxy.common.IProxy;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 静态代理
+ */
 @Slf4j
 public class StaticProxy implements IProxy {
-    private IProxy proxy;
+    private final IProxy proxy;
 
     public StaticProxy(IProxy proxy){
         this.proxy = proxy;

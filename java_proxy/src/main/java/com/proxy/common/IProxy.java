@@ -1,4 +1,4 @@
-package com.proxy.staticproxy;
+package com.proxy.common;
 
 public interface IProxy {
     void print();
