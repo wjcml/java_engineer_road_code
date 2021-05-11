@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.lang.reflect.Proxy;
 
 
-@Api(tags="用户管理")
+@Api(tags="代理")
 @RestController
 @RequestMapping("/proxy")
 public class ProxyController {
