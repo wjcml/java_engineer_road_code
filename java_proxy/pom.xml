@@ -17,16 +17,18 @@
     </properties>
 
     <dependencies>
-        <!-- jpa -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.swg</groupId>
             <artifactId>spring_swagger</artifactId>
             <version>${module.version}</version>
+        </dependency>
+
+        <!-- cglib 依赖 -->
+        <!-- 如果你已经有spring-core的jar包，则无需引入，因为spring中包含了cglib -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.5</version>
         </dependency>
 
     </dependencies>

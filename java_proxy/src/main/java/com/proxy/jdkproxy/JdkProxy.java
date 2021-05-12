@@ -26,10 +26,10 @@ public class JdkProxy implements InvocationHandler {
      */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        log.info("JDK动态代理：本条日志在被代理方法执行前, before-------切面加入逻辑");
+        log.info("JDK动态代理：本条日志在被代理方法执行前");
         //通过反射执行，目标类的方法
         Object invoke = method.invoke(target, args);
-        log.info("JDK动态代理：本条日志在被代理方法执行后, after-------切面加入逻辑");
+        log.info("JDK动态代理：本条日志在被代理方法执行后");
         return invoke;
     }
 
@@ -40,7 +40,7 @@ public class JdkProxy implements InvocationHandler {
      * 这里返回的对象就是我们目标类的增强代理类
      * @return 代理对象
      */
-    public Object getProxyObject() {
+    public Object getProxyInstance() {
         return Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(),
                 target.getClass().getInterfaces(), this);
     }
