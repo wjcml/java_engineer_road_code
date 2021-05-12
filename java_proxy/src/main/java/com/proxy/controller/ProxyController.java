@@ -22,6 +22,13 @@ import java.lang.reflect.Proxy;
 @Slf4j
 public class ProxyController {
 
+    /**
+     * 输出结果：
+     *
+     * 静态代理模式：本条日志在被代理方法执行前
+     * 执行被代理的方法
+     * 静态代理模式：本条日志在被代理方法执行后
+     */
     @ApiOperation("静态代理方式")
     @GetMapping("/static")
     public Object staticProxy(){
@@ -34,6 +41,16 @@ public class ProxyController {
         return "静态代理实现成功，请注意控制台的输出";
     }
 
+
+    /**
+     * 输出结果：
+     *
+     * 目标对象的class：class com.proxy.common.ProxyImpl
+     * JDK动态代理生成的代理对象的class：class com.sun.proxy.$Proxy85
+     * JDK动态代理：本条日志在被代理方法执行前
+     * 执行被代理的方法
+     * JDK动态代理：本条日志在被代理方法执行后
+     */
     @ApiOperation("JDK动态代理方式")
     @GetMapping("/jdk")
     public Object jdkProxy(){
@@ -53,6 +70,16 @@ public class ProxyController {
         return "JDK动态代理实现成功，请注意控制台的输出";
     }
 
+
+    /**
+     * 输出结果：
+     *
+     * 目标对象的class：class com.proxy.cglibproxy.ProxyClass
+     * cglib生成的代理对象的class：class com.proxy.cglibproxy.ProxyClass$$EnhancerByCGLIB$$3a741a8e
+     * cglib动态代理：本条日志在被代理方法执行前
+     * 执行被代理的方法
+     * cglib动态代理：本条日志在被代理方法执行后
+     */
     @ApiOperation("cglib动态代理方式")
     @GetMapping("/cglib")
     public Object cglibProxy(){
