@@ -5,7 +5,7 @@
 
 ### 2、依赖：
 **依赖的子模块**  
-[spring_swagger](./spring_swagger)
+[spring_swagger](../spring_swagger)
 
 **其他的依赖**
 ```xml
