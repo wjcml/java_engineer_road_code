@@ -1,15 +1,2 @@
 server:
   port: 8080
-#数据源配置
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/java_engineer_road_code?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
-    username: root
-    password: root
-
-  jpa:
-    # 配置自动创建表，updata:没有表新建，有表更新操作,控制台显示建表语句
-    hibernate:
-      ddl-auto: update
-    show-sql: true

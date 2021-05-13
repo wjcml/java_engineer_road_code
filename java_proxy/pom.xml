@@ -12,15 +12,17 @@
     <version>1.0.0</version>
     <name>java_proxy</name>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.swg</groupId>
             <artifactId>spring_swagger</artifactId>
             <version>${module.version}</version>
+        </dependency>
+
+        <!-- web依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <!-- cglib 依赖 -->

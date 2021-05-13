@@ -20,6 +20,7 @@
     <modules>
         <module>java_proxy</module>
         <module>spring_swagger</module>
+        <module>spring_oauth</module>
     </modules>
 
 
@@ -29,11 +30,6 @@
     </properties>
 
     <dependencies>
-        <!-- web依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <!-- lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
