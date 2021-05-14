@@ -1,6 +1,6 @@
 package com.oauth.service.Impl;
 
-import com.oauth.common.ServiceException;
+import com.common.ServiceException;
 import com.oauth.dao.UserRepository;
 import com.oauth.entity.User;
 import com.oauth.service.IUserService;

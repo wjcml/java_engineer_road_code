@@ -1,4 +1,4 @@
-package com.oauth.common;
+package com.common;
 
 public class ServiceException extends RuntimeException {
     private static final long serialVersionUID = 2359767895161832954L;

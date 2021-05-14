@@ -1,6 +1,8 @@
-package com.oauth.common;
+package com.common;
 
+import cn.hutool.core.lang.func.Func;
 import cn.hutool.core.util.StrUtil;
+import com.sun.jndi.toolkit.url.UrlUtil;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +37,7 @@ import java.util.Set;
  * @author Chill
  */
 @Slf4j
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnClass({ Servlet.class, DispatcherServlet.class })
@@ -44,70 +46,16 @@ public class RestExceptionTranslator {
 
     @ExceptionHandler(ServiceException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result<?> ServiceExceptionHandleError(ServiceException e) {
-        log.warn("{}", e.getMessage());
-        String message = String.format("%s", e.getMessage());
-        return Result.fail(message);
-    }
-
-    @ExceptionHandler(MissingServletRequestParameterException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result<?> handleError(MissingServletRequestParameterException e) {
-        log.warn("缺少请求参数:{}", e.getMessage());
-        String message = String.format("缺少必要的请求参数: %s", e.getParameterName());
-        return Result.fail(message);
-    }
-
-    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result<?> handleError(MethodArgumentTypeMismatchException e) {
-        log.warn("请求参数格式错误:{}", e.getMessage());
-        String message = String.format("请求参数格式错误: %s", e.getName());
-        return Result.fail(message);
-    }
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result<?> handleError(MethodArgumentNotValidException e) {
-        log.warn("参数验证失败:{}", e.getMessage());
-        return handleError(e.getBindingResult());
-    }
-
-    @ExceptionHandler(ConstraintViolationException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result<?> handleError(ConstraintViolationException e) {
-        log.warn("参数验证失败: {}", e.getMessage());
-        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-        ConstraintViolation<?> violation = violations.iterator().next();
-        String message = String.format("%s", violation.getMessage());
-        return Result.fail(message);
-    }
-
-    @ExceptionHandler(BindException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result<?> handleError(BindException e) {
-        log.warn("参数绑定失败:{}", e.getMessage());
-        return handleError(e.getBindingResult());
-    }
-
-    private Result<?> handleError(BindingResult result) {
-        FieldError error = result.getFieldError();
-        assert error != null;
-        return Result.fail(error.getDefaultMessage());
-    }
-
-
-    @ExceptionHandler(NoHandlerFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Result<?> handleError(NoHandlerFoundException e) {
-        log.error("404没找到请求:{}", e.getMessage());
+    public Result<?> handleError(ServiceException e) {
+        log.error("业务异常: {}", e.getMessage());
         return Result.fail(e.getMessage());
     }
 
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result<?> handleError(HttpMessageNotReadableException e) {
-        log.error("消息不能读取:{}", e.getMessage());
+    @ExceptionHandler(Throwable.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Result<?> handleError(Throwable e) {
+        log.error("服务器异常", e);
+        //发送服务异常事件
         return Result.fail(e.getMessage());
     }
 

@@ -1,4 +1,4 @@
-package com.oauth.common;
+package com.common;
 
 import lombok.Data;
 

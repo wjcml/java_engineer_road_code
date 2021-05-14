@@ -1,16 +1,14 @@
 package com.oauth.controller;
 
-import com.oauth.common.Result;
-import com.oauth.dto.UserDTO;
+import com.common.Result;
 import com.oauth.entity.User;
 import com.oauth.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,9 +29,7 @@ public class UserController {
 
     @PostMapping("/add")
     @ApiOperation(value = "新增用户")
-    public Result<?> add(@RequestBody UserDTO userDTO) {
-        User user = new User();
-        BeanUtils.copyProperties(userDTO, user);
+    public Result<?> add(@Valid User user) {
         userService.adduser(user);
         return Result.ok();
     }
