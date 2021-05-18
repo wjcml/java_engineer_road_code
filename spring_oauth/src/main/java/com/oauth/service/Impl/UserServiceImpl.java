@@ -1,6 +1,6 @@
 package com.oauth.service.Impl;
 
-import com.common.ServiceException;
+import com.common.CommonException;
 import com.oauth.dao.UserRepository;
 import com.oauth.entity.User;
 import com.oauth.service.IUserService;
@@ -19,7 +19,7 @@ public class UserServiceImpl implements IUserService {
     public String userLogin(User user) {
         Optional<User> userOptional = userRepository.findFirstByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (!userOptional.isPresent()){
-            throw new ServiceException("用户名或密码错误");
+            throw new CommonException("用户名或密码错误");
         }
 
         return JwtUtil.createToken(userOptional.get());
@@ -29,9 +29,15 @@ public class UserServiceImpl implements IUserService {
     public void adduser(User user) {
         Optional<User> userOptional = userRepository.findFirstByUsername(user.getUsername());
         if (userOptional.isPresent()){
-            throw new ServiceException("用户名已存在");
+            throw new CommonException("用户名已存在");
         }
 
         userRepository.save(user);
+    }
+
+    @Override
+    public User findUserByName(String username) {
+        Optional<User> userOptional = userRepository.findFirstByUsername(username);
+        return userOptional.orElse(null);
     }
 }

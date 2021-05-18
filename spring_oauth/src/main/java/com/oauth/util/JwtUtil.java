@@ -2,16 +2,13 @@ package com.oauth.util;
 
 import cn.hutool.core.date.DateUtil;
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.common.ServiceException;
+import com.common.CommonException;
 import com.oauth.entity.User;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * jwt工具类
@@ -49,11 +46,11 @@ public class JwtUtil {
     public static boolean verify(String token) {
         DecodedJWT decodedJWT = JWT.decode(token);
         if (decodedJWT == null){
-            throw new ServiceException("请求未授权");
+            throw new CommonException("请求未授权");
         }
 
         if (decodedJWT.getExpiresAt().before(DateUtil.date())){
-            throw new ServiceException("token已失效");
+            throw new CommonException("token已失效");
         }
 
         return true;

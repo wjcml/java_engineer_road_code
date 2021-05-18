@@ -1,9 +1,9 @@
 package com.common;
 
-public class ServiceException extends RuntimeException {
+public class CommonException extends RuntimeException {
     private static final long serialVersionUID = 2359767895161832954L;
 
-    public ServiceException(String message) {
+    public CommonException(String message) {
         super(message);
     }
 

@@ -1,35 +1,21 @@
 package com.common;
 
-import cn.hutool.core.lang.func.Func;
 import cn.hutool.core.util.StrUtil;
-import com.sun.jndi.toolkit.url.UrlUtil;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.Servlet;
-import java.util.Set;
 
 /**
  * 全局异常处理，处理可预见的异常，Order 排序优先级高
@@ -44,9 +30,9 @@ import java.util.Set;
 @RestControllerAdvice
 public class RestExceptionTranslator {
 
-    @ExceptionHandler(ServiceException.class)
+    @ExceptionHandler(CommonException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result<?> handleError(ServiceException e) {
+    public Result<?> handleError(CommonException e) {
         log.error("业务异常: {}", e.getMessage());
         return Result.fail(e.getMessage());
     }
