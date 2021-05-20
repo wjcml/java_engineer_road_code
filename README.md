@@ -8,3 +8,6 @@
 ## swagger 3.0配置类
 项目名称：[spring_swagger](./spring_swagger)
 
+## springboot + logback 日志配置
+项目名称：[spring_log](./spring_log)
+
