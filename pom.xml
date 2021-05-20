@@ -22,6 +22,7 @@
         <module>spring_swagger</module>
         <module>spring_oauth</module>
         <module>spring_common</module>
+        <module>spring_log</module>
     </modules>
 
 

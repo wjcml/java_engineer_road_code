@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+# 日志输出配置
+logging:
+  path: ./log
+  level:
+    root: info
+
+#elk日志地址
+#log:
+#  elk:
+#    destination:
+
+aa: TRUE
+
