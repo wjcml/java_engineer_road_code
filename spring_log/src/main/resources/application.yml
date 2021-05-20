@@ -3,7 +3,6 @@ server:
 
 # »’÷æ ‰≥ˆ≈‰÷√
 logging:
-  path: ./log
   level:
     root: info
 
@@ -11,6 +10,4 @@ logging:
 #log:
 #  elk:
 #    destination:
-
-aa: TRUE
 
