@@ -11,3 +11,6 @@
 ## springboot + logback 日志配置
 项目名称：[spring_log](./spring_log)
 
+## springboot + jpa + HicariCP + MySQL 在代码中实现读写分离
+项目名称：[spring_read_write_split_for_code](./spring_read_write_split_for_code)
+

@@ -1,0 +1,58 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  # jpa相关配置
+  jpa:
+    open-in-view: false
+    # 运行项目时对数据库进行的操作，这里是update
+    hibernate:
+      # 实体对象变化会更新数据库的表
+      ddl-auto: update
+        # 打印sql语句
+    show-sql: true
+    properties:
+      hibernate:
+        # 将format_sql 配置为ture，将会格式化sql语句
+        format_sql: true
+        max_fetch_depth: 1
+        # SpringBoot2.0以后需要指定方言才能使用InnoDB引擎
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  # 数据库配置
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+
+    # 主数据库
+    master:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/java_engineer_road_code?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
+      username: root
+      password: root
+      #  HikariCP 连接池配置
+      # 连接池名称
+      pool-name: HikariPool-1
+      # 最小空闲连接数量，默认是10
+      minimum-idle: 5
+      # 连接池最大连接数，默认是10
+      maximum-pool-size: 10
+      # 空闲连接存活最大时间，默认600000（10分钟）
+      idle-timeout: 600000
+      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      max-lifetime: 1800000
+      # 数据库连接超时时间,默认30秒，即30000
+      connection-timeout: 30000
+
+    # 从数据库
+    slave:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/java_engineer_road_code?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
+      username: root
+      password: root
+      pool-name: HikariPool-2
+      minimum-idle: 5
+      maximum-pool-size: 10
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      read-only: true
+

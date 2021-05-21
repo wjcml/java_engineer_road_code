@@ -23,6 +23,7 @@
         <module>spring_oauth</module>
         <module>spring_common</module>
         <module>spring_log</module>
+        <module>spring_read_write_split_for_code</module>
     </modules>
 
 
