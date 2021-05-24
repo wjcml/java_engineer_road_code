@@ -1,5 +1,6 @@
 package com.oauth.controller;
 
+import com.common.CommonException;
 import com.common.Result;
 import com.oauth.entity.User;
 import com.oauth.service.IUserService;
@@ -29,7 +30,7 @@ public class UserController {
 
     @PostMapping("/add")
     @ApiOperation(value = "新增用户")
-    public Result<?> add(@Valid User user) {
+    public Result<?> add(@Valid @RequestBody User user) {
         userService.adduser(user);
         return Result.ok();
     }

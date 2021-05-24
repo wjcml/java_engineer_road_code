@@ -6,7 +6,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(scanBasePackages = {"com.common", "com.oauth"})
+@SpringBootApplication
 public class SpringOauthApplication {
 
     public static void main(String[] args) {
