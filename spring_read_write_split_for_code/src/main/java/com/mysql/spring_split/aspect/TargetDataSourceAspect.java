@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
+@Slf4j
 public class TargetDataSourceAspect {
 	
 	/**
@@ -22,6 +23,7 @@ public class TargetDataSourceAspect {
 		try {
 			// 切换数据源
 			DynamicDataSourceHolder.setDataSource(targetDataSource.value());
+			log.info(String.format("当前使用的数据源为：%s", targetDataSource.value()));
 			// 执行被注解的方法
 			Object result = proceedingJoinPoint.proceed();
 

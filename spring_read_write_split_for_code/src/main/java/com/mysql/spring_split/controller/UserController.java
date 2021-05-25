@@ -28,6 +28,6 @@ public class UserController {
     @GetMapping(value = "/add")
     @ApiOperation(value = "随机添加一个用户")
     public User add(){
-        return userService.createUser();
+        return userService.saveUser(userService.createUser());
     }
 }
