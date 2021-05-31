@@ -22,11 +22,13 @@ public class UserServiceImpl implements IUserService {
         return userRepository.findAll();
     }
 
+    /**
+     * 需要注意的是aop无法代理内部调用的方法，所以createUser()方法不能直接调用saveUser()方法，否则@TargetDataSource注解不生效
+     */
     @Override
     public User createUser() {
         // 用户名使用一个随机字符串代替
-        User user = new User(IdUtil.randomUUID(), "123456", "13535678907");
-        return this.saveUser(user);
+        return new User(IdUtil.randomUUID(), "123456", "13535678907");
     }
 
     @Override
