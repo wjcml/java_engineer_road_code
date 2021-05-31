@@ -9,7 +9,7 @@
     </parent>
 
     <groupId>com.mysql</groupId>
-    <artifactId>spring_split</artifactId>
+    <artifactId>spring_read_write_split_for_code</artifactId>
     <version>1.0.0</version>
 
     <properties>
